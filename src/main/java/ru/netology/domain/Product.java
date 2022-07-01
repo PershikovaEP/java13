@@ -2,7 +2,6 @@ package ru.netology.domain;
 
 public class Product {
 
-
     protected int id;
     protected String name;
     protected int price;
@@ -13,7 +12,13 @@ public class Product {
         this.price = price;
     }
 
-    public Product(int id, String первая_книга, int price, String иванов_иван) {
+    // метод, определяющий подходит ли продукт поисковому запросу исходя из названия
+    public boolean matches(String search) {
+        if (getName().contains(search)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public int getId() {

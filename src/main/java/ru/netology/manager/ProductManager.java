@@ -26,9 +26,9 @@ public class ProductManager {
 //    определённый в классе менеджера же метод matches, который проверяет, соответствует ли продукт поисковому
 //    запросу.
     public Product[] searchBy(String text) {
-        Product[] result = new Product[0]; // тут будем хранить подошедшие запросу продукты, изначаоотно нулевой
+        Product[] result = new Product[0]; // тут будем хранить подошедшие запросу продукты, изначально нулевой
         for (Product product: repo.findAll()) {
-            if (matches(product, text)) {
+            if (product.matches(text)) {  //берем метод у product
                 // "добавляем в конец" массива result продукт product
                 Product[] tmp = new Product[result.length + 1];//массив для хран-я найд.д-х длиной на 1 больше result
                 tmp[tmp.length - 1] = product; //заполняем последнюю ячейку
@@ -41,15 +41,15 @@ public class ProductManager {
     // метод определения соответствия товара product запросу search
     //При проверке на соответствие запросу товару мы проверяем вхождение запроса в текст названия товара.
 
-    public boolean matches(Product product, String search) {
-        if (product.getName().contains(search)) {
-            return true;
-        } else {
-            return false;
-        }
-        // или в одну строку:
-        // return product.getName().contains(search);
-    }
+//    public boolean matches(Product product, String search) {
+//        if (product.getName().contains(search)) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//        // или в одну строку:
+//        // return product.getName().contains(search);
+//    }
 
 
 }

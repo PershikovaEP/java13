@@ -33,7 +33,7 @@ public class ProductRepository {
         }
     }
 
-    // вычисляем длину массива для метода удаление по айди
+    // вычисляем длину массива для метода удаления по айди
     public int length(int id) {
         Product[] tmp = new Product[products.length];  //создали массив
         int length = 0; //счетчик- длина массива, изначально 0

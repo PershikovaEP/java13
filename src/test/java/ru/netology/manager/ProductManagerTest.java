@@ -22,7 +22,7 @@ public class ProductManagerTest {
         manager.add(product2);
         manager.add(product3);
 
-        Product[] expected = { product1, product2, product3};
+        Product[] expected = { product1, product2, product3 };
         Product[] actual = manager.findAll();
 
         assertArrayEquals(expected, actual);
