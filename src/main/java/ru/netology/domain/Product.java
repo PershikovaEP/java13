@@ -13,9 +13,6 @@ public class Product {
         this.price = price;
     }
 
-    public Product(int id, String первая_книга, int price, String иванов_иван) {
-    }
-
     public int getId() {
         return id;
     }
