@@ -20,9 +20,15 @@ public class ProductRepository {
         return products;
     }
 
-    //удалять по айди без исключений(то есть можно попросить удалить, если такого айди нет в массиве данных)
+    //удалять по айди с исключением
     public void removeById(int id) {
-        Product[] tmp = new Product[length(id)];  //создали массив вычисленной длины
+        if (findById(id) == null) {
+            throw new NotFoundException(
+                    "Element with id: " + id + " not found"
+            );
+        }
+
+        Product[] tmp = new Product[products.length - 1];  //создали массив длиной на 1 меньше
         int copyToIndex = 0; //переменная, сохраняющая место для копирования
         for (Product product : products) {  //пройдем по всему массиву
             if (product.getId() != id) {  //если id не совпадает, то копируем в эту ячейку, равную индексу, фильм
@@ -33,16 +39,25 @@ public class ProductRepository {
         }
     }
 
-    // вычисляем длину массива для метода удаление по айди
-    public int length(int id) {
-        Product[] tmp = new Product[products.length];  //создали массив
-        int length = 0; //счетчик- длина массива, изначально 0
-        for (Product product : products) {  //пройдем по всему массиву
-            if (product.getId() != id) {  //если id не совпадает, то
-                length++; //переставляем счетчик
+    public Product findById(int id) {
+        for (Product product : products) {
+            if (product.getId() == id) {
+                return product;  //если не совпадает айди, то выводим продукт, иначе результат нулл
             }
         }
-        return length;
+        return null;
     }
+
+    // вычисляем длину массива для метода удаление по айди
+//    public int length(int id) {
+//        Product[] tmp = new Product[products.length];  //создали массив
+//        int length = 0; //счетчик- длина массива, изначально 0
+//        for (Product product : products) {  //пройдем по всему массиву
+//            if (product.getId() != id) {  //если id не совпадает, то
+//                length++; //переставляем счетчик
+//            }
+//        }
+//        return length;
+//    }
 
 }

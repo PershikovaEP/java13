@@ -70,17 +70,29 @@ public class ProductRepositoryTest {
         assertArrayEquals(expected, actual);
     }
 
+//    @Test
+//    public void shouldNotRemoveByIdWhenNotId() {
+//        repo.save(product1);
+//        repo.save(product2);
+//        repo.save(product3);
+//
+//        repo.removeById(8);
+//
+//        Product[] expected = { product1, product2, product3 };
+//        Product[] actual = repo.findAll();
+//
+//        assertArrayEquals(expected, actual);
+//    }
+
     @Test
-    public void shouldNotRemoveByIdWhenNotId() {
+    public void shouldGenerateNotFoundExceptionWhenNotFoundId() {
         repo.save(product1);
         repo.save(product2);
         repo.save(product3);
 
-        repo.removeById(8);
-
-        Product[] expected = { product1, product2, product3 };
-        Product[] actual = repo.findAll();
-
-        assertArrayEquals(expected, actual);
+        assertThrows(NotFoundException.class, () -> {
+            repo.removeById(8);
+        });
     }
+
 }
