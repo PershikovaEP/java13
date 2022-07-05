@@ -95,4 +95,16 @@ public class ProductRepositoryTest {
         });
     }
 
+    @Test
+    public void shouldGenerateAlreadyExistsExceptionWhenProductAlreadyExists() {
+
+        repo.save(product1);
+        repo.save(product2);
+        repo.save(product3);
+
+        assertThrows(AlreadyExistsException.class, () -> {
+            repo.save(product2);
+        });
+    }
+
 }
