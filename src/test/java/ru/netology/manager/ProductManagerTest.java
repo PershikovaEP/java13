@@ -70,6 +70,18 @@ public class ProductManagerTest {
     }
 
     @Test
+    public void shouldSearchByWhenSeveralProduct() {
+        manager.add(product1);
+        manager.add(product2);
+        manager.add(product3);
+
+        Product[] expected = { product1, product3 };
+        Product[] actual = manager.searchBy("книга");
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
     public void shouldSearchByNameBookWhenPartName() {
         manager.add(product1);
         manager.add(product2);
@@ -77,6 +89,30 @@ public class ProductManagerTest {
 
         Product[] expected = { product1 };
         Product[] actual = manager.searchBy("Первая");
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSearchByAuthorBook() {
+        manager.add(product1);
+        manager.add(product2);
+        manager.add(product3);
+
+        Product[] expected = { product1 };
+        Product[] actual = manager.searchBy("Иванов Иван");
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSearchByMakerSmartphone() {
+        manager.add(product1);
+        manager.add(product2);
+        manager.add(product3);
+
+        Product[] expected = { product2 };
+        Product[] actual = manager.searchBy("Korea");
 
         assertArrayEquals(expected, actual);
     }

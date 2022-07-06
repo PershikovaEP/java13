@@ -31,6 +31,9 @@ public class ProductManager {
             if (product.matches(text)) {  //берем метод у product
                 // "добавляем в конец" массива result продукт product
                 Product[] tmp = new Product[result.length + 1];//массив для хран-я найд.д-х длиной на 1 больше result
+                for (int i = 0; i < result.length; i++) { //чтобы сохранять несколько вариантов делаем цикл
+                    tmp[i] = result[i];
+                }
                 tmp[tmp.length - 1] = product; //заполняем последнюю ячейку
                 result = tmp; //заменяем
             }
