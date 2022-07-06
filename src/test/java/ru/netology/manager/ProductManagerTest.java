@@ -13,8 +13,9 @@ public class ProductManagerTest {
     ProductManager manager = new ProductManager(repo);
 
     Product product1 = new Book(1, "Первая книга", 500, "Иванов Иван" );
-    Product product2 = new Smartphone(2, "Samsung2", 15_000, "Korea");
+    Product product2 = new Smartphone(2, "Samsung", 15_000, "Korea");
     Product product3 = new Book(3, "Вторая книга", 1_000, "Петров Петр");
+    Product product4= new Smartphone(2, "Samsung", 19_000, "Chine");
 
     @Test
     public void shouldAddOtherProducts() {
@@ -58,13 +59,25 @@ public class ProductManagerTest {
     }
 
     @Test
-    public void shouldSearchByNameSmartphone() {
+    public void shouldSearchByNameBook() {
         manager.add(product1);
         manager.add(product2);
         manager.add(product3);
 
-        Product[] expected = { product2 };
-        Product[] actual = manager.searchBy("Samsung2");
+        Product[] expected = { product1 };
+        Product[] actual = manager.searchBy("Первая книга");
+
+        assertArrayEquals(expected, actual);
+    }
+    @Test
+    public void shouldSearchByNameSmartphoneWhenSeveralProduct() {
+        manager.add(product1);
+        manager.add(product2);
+        manager.add(product3);
+        manager.add(product4);
+
+        Product[] expected = { product2, product4 };
+        Product[] actual = manager.searchBy("Samsung");
 
         assertArrayEquals(expected, actual);
     }
@@ -92,6 +105,4 @@ public class ProductManagerTest {
 
         assertArrayEquals(expected, actual);
     }
-
-
 }
